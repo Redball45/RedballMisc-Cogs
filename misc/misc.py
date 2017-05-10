@@ -13,3 +13,5 @@ class misc:
 		await self.bot.say("Who dares summon me?")
 
 def setup(bot):
+		n = misc(bot)
+		bot.add_cog(n)
