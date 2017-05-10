@@ -10,9 +10,8 @@ class misc:
 	def __init__(self, bot):
 		self.bot = bot
 
-	@commands.command(pass_context=True)
-	async def summon(self, ctx, key):
-		"""Adds your key and associates it with your discord account"""
+	@commands.command()
+	async def summon(self):
 		await self.bot.say("Who dares summon me?")
 
 def setup(bot):
