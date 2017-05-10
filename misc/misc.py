@@ -12,3 +12,4 @@ class misc:
 		"""Adds your key and associates it with your discord account"""
 		await self.bot.say("Who dares summon me?")
 
+def setup(bot):
