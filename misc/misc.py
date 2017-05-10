@@ -10,7 +10,7 @@ class misc:
 	def __init__(self, bot):
 		self.bot = bot
 
-	@commands.command()
+	@commands.command(hidden=True)
 	async def summon(self):
 		await self.bot.say("Who dares summon me?")
 
