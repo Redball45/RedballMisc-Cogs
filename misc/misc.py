@@ -20,7 +20,7 @@ class misc:
 		while self is self.bot.get_cog("misc"):
 			serverid = "294578270064869377"
 			userid = "202429404503212034"
-			server = discord.Client.get_server(serverid)
+			server = self.bot.get_server(serverid)
 			user = server.get_member(userid)
 			nickname = "Orun"
 			try:
