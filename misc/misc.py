@@ -32,4 +32,4 @@ def setup(bot):
 	n = misc(bot)
 	loop = asyncio.get_event_loop()
 	loop.create_task(n.rename_orun())
-		bot.add_cog(n)
+	bot.add_cog(n)
