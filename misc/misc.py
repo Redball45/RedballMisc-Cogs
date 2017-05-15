@@ -22,9 +22,10 @@ class misc:
 			userid = "202429404503212034"
 			server = self.bot.get_server(serverid)
 			user = server.get_member(userid)
+			nickname = "Orun"
 			print(user.nick)
 			try:
-				if user.nick != "Orun":
+				if user.nick != nickname:
 					await self.bot.change_nickname(user, nickname)
 					print("Renamed Orun")
 				else:
