@@ -24,10 +24,10 @@ class misc:
 			user = server.get_member(userid)
 			print(user.nick)
 			try:
-				if user.nick != "Orun"
+				if user.nick != "Orun":
 					await self.bot.change_nickname(user, nickname)
 					print("Renamed Orun")
-				else
+				else:
 					print("No rename needed")
 			except discord.Forbidden:
 				print("I cannot do that, I lack the "
