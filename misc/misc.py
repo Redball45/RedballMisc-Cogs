@@ -20,6 +20,7 @@ class misc:
 		while self is self.bot.get_cog("misc"):
 			user_id = 202429404503212034
 			user_id = str(user_id)
+			server = str(server)
 			server = 294578270064869377
 			user = server.get_member(orun_id)
 			nickname = "Orun"
