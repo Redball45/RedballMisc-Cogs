@@ -28,8 +28,6 @@ class misc:
 				if user.nick != nickname:
 					await self.bot.change_nickname(user, nickname)
 					#print("Renamed Orun")
-				else:
-					#print("No rename needed")
 			except discord.Forbidden:
 				print("I cannot do that, I lack the "
 								"\"Manage Nicknames\" permission.")
