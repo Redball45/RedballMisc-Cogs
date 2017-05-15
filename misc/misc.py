@@ -23,10 +23,12 @@ class misc:
 			server = self.bot.get_server(serverid)
 			user = server.get_member(userid)
 			print(user.nick)
-			nickname = "Orun"
 			try:
-				await self.bot.change_nickname(user, nickname)
-				print("Renamed Orun")
+				if user.nick != "Orun"
+					await self.bot.change_nickname(user, nickname)
+					print("Renamed Orun")
+				else
+					print("No rename needed")
 			except discord.Forbidden:
 				print("I cannot do that, I lack the "
 								"\"Manage Nicknames\" permission.")
