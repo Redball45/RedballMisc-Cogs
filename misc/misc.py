@@ -16,10 +16,11 @@ class misc:
 	async def summon(self):
 		await self.bot.say("Who dares summon me?")
 
-	async def rename_orun(self):
+	async def rename_orun(self, ):
 		while self is self.bot.get_cog("misc"):
 			orun_id = 202429404503212034
-			user = await self.bot.get_user_info(orun_id)
+			server = 294578270064869377
+			user = server.get_member(orun_id)
 			nickname = "Orun"
 			try:
 				await self.bot.change_nickname(user, nickname)
