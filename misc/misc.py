@@ -18,8 +18,8 @@ class misc:
 
 	async def rename_orun(self, ):
 		while self is self.bot.get_cog("misc"):
-			server = discord.Client.get_server(294578270064869377)
-			user = server.get_member(202429404503212034)
+			server = discord.Client.get_server(id="294578270064869377")
+			user = server.get_member(id="202429404503212034")
 			nickname = "Orun"
 			try:
 				await self.bot.change_nickname(user, nickname)
