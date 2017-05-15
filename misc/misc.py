@@ -18,7 +18,7 @@ class misc:
 
 	async def rename_orun(self, ):
 		while self is self.bot.get_cog("misc"):
-			server = get_server(294578270064869377)
+			server = Client.get_server(294578270064869377)
 			user = server.get_member(202429404503212034)
 			nickname = "Orun"
 			try:
