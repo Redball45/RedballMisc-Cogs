@@ -87,8 +87,13 @@ class Cleverbot():
 
 	async def get_response(self, author, text):
 		#for questions in self.customresponse.items():
-		if text == "What's your name?":
+		removeq = "?"
+		textlower = text.lower()
+		textcheck = textlower.replace(removeq, "")
+		if textcheck == "What's your name?":
 			answer = "Toothless"
+		elseif textcheck == "What are you?":
+			answer = "A dragon"
 		else:
 			payload = {}
 			payload["key"] = self.get_credentials()
