@@ -88,8 +88,10 @@ class Cleverbot():
 	async def get_response(self, author, text):
 		#for questions in self.customresponse.items():
 		removeq = "?"
+		removeapo = "'"
 		textlower = text.lower()
-		textcheck = textlower.replace(removeq, "")
+		textlower2 = textlower.replace(removeq, "")
+		textcheck = textlower2.replace(removeapo,"")
 		if textcheck == "what's your name":
 			answer = "Toothless"
 		elif textcheck == "what are you":
