@@ -90,9 +90,9 @@ class Cleverbot():
 		removeq = "?"
 		textlower = text.lower()
 		textcheck = textlower.replace(removeq, "")
-		if textcheck == "What's your name?":
+		if textcheck == "what's your name":
 			answer = "Toothless"
-		elif textcheck == "What are you?":
+		elif textcheck == "what are you":
 			answer = "A dragon"
 		else:
 			payload = {}
