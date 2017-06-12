@@ -35,6 +35,7 @@ class Cleverbot():
 		self.settings = dataIO.load_json("data/cleverbot/settings.json")
 		self.instances = {}
 		self.customresponse = dataIO.load_json("data/cleverbot/customresponse.json")
+
 	@commands.group(no_pm=True, invoke_without_command=True, pass_context=True)
 	async def cleverbot(self, ctx, *, message):
 		"""Talk with cleverbot"""
@@ -95,6 +96,7 @@ class Cleverbot():
 		textcheck = textcheck.replace(" ", "")
 		print(textcheck)
 		questions = self.customresponse["questions"]
+		print(questions)
 		for question in questions:
 			print(question)
 			if textcheck == question:
