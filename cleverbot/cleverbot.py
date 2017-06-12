@@ -89,7 +89,7 @@ class Cleverbot():
 		#for questions in self.customresponse.items():
 		if text == "What's your name?":
 			answer = "Toothless"
-		else
+		else:
 			payload = {}
 			payload["key"] = self.get_credentials()
 			payload["cs"] = self.instances.get(author.id, "")
