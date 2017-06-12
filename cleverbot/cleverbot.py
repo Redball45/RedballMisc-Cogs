@@ -126,7 +126,7 @@ class Cleverbot():
 			await session.close()
 			return data["output"]
 
-	@cleverbot.command(pass_context=True, name="add")
+	@command.command(pass_context=True)
 	@checks.mod_or_permissions(manage_webhooks=True)
 	async def response(self, ctx, *, input_data: str):
 		"""Adds a custom response for cleverbot. Format is !response message;answer )"""
