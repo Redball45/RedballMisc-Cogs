@@ -129,12 +129,13 @@ class Cleverbot():
 	@cleverbot.command(pass_context=True, name="add")
 	@checks.mod_or_permissions(manage_webhooks=True)
 	async def response(self, ctx, *, input_data: str):
-		"""Adds a custom response for cleverbot. Format is !response message;answer (answer in JSON format e.g { "answer" : "Toothless"})"""
+		"""Adds a custom response for cleverbot. Format is !response message;answer )"""
 		try:
 			name, data = input_data.split(';',1)
 		except IndexError:
 			await self.bot.say("Plz format as !container add name;data (data in JSON format)")
 			return
+		parseddata = '{ "answer" : "' + data + '"}'
 		removeq = "?"
 		removeapo = "'"
 		textlower = name.lower()
@@ -142,7 +143,7 @@ class Cleverbot():
 		textcheck = textlower2.replace(removeapo,"")
 		textcheck = textcheck.replace(" ", "")
 		try:
-			self.customresponse["questions"][textcheck] = json.loads(data)
+			self.customresponse["questions"][textcheck] = json.loads(parseddata)
 		except ValueError:
 			await self.bot.say("Error in reading the JSON format")
 			return
