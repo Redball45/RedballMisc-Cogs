@@ -101,27 +101,30 @@ class Cleverbot():
 			print(question)
 			if textcheck == question:
 				answer = question["answer"]
-				return answer
-			else:
-				payload = {}
-				payload["key"] = self.get_credentials()
-				payload["cs"] = self.instances.get(author.id, "")
-				payload["input"] = text
-				session = aiohttp.ClientSession()
+				cresponse = True
+		if cresponse = True
+			return answer
+		else		
+			payload = {}
+			payload["key"] = self.get_credentials()
+			payload["cs"] = self.instances.get(author.id, "")
+			payload["input"] = text
+			session = aiohttp.ClientSession()
 
-				async with session.get(API_URL, params=payload) as r:
-					if r.status == 200:
-						data = await r.text()
-						data = json.loads(data, strict=False)
-						self.instances[author.id] = data["cs"] # Preserves conversation status
-					elif r.status == 401:
-						raise InvalidCredentials()
-					elif r.status == 503:
-						raise OutOfRequests()
-					else:
-						raise APIError()
-				await session.close()
-				return data["output"]
+			async with session.get(API_URL, params=payload) as r:
+				if r.status == 200:
+					data = await r.text()
+					data = json.loads(data, strict=False)
+					self.instances[author.id] = data["cs"] # Preserves conversation status
+				elif r.status == 401:
+					raise InvalidCredentials()
+				elif r.status == 503:
+					raise OutOfRequests()
+				else:
+					raise APIError()
+			await session.close()
+			return data["output"]
+
 
 	def get_credentials(self):
 		if "cleverbot_key" not in self.settings:
