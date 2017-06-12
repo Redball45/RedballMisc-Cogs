@@ -34,7 +34,7 @@ class Cleverbot():
 		self.bot = bot
 		self.settings = dataIO.load_json("data/cleverbot/settings.json")
 		self.instances = {}
-		#self.customresponse = dataIO.load_json("data/cleverbot/customresponse.json")
+		self.customresponse = dataIO.load_json("data/cleverbot/customresponse.json")
 	@commands.group(no_pm=True, invoke_without_command=True, pass_context=True)
 	async def cleverbot(self, ctx, *, message):
 		"""Talk with cleverbot"""
@@ -92,31 +92,32 @@ class Cleverbot():
 		textlower = text.lower()
 		textlower2 = textlower.replace(removeq, "")
 		textcheck = textlower2.replace(removeapo,"")
-		if textcheck == "whats your name":
-			answer = "Toothless"
-		elif textcheck == "what are you":
-			answer = "A dragon"
-		else:
-			payload = {}
-			payload["key"] = self.get_credentials()
-			payload["cs"] = self.instances.get(author.id, "")
-			payload["input"] = text
-			session = aiohttp.ClientSession()
+		textcheck = textcheck.replace(" ", "")
+		questions = self.customresponse["questions"]
+		for question in questions
+			if textcheck == question:
+				answer = question["answer"]
+				return answer
+			else:
+				payload = {}
+				payload["key"] = self.get_credentials()
+				payload["cs"] = self.instances.get(author.id, "")
+				payload["input"] = text
+				session = aiohttp.ClientSession()
 
-			async with session.get(API_URL, params=payload) as r:
-				if r.status == 200:
-					data = await r.text()
-					data = json.loads(data, strict=False)
-					self.instances[author.id] = data["cs"] # Preserves conversation status
-				elif r.status == 401:
-					raise InvalidCredentials()
-				elif r.status == 503:
-					raise OutOfRequests()
-				else:
-					raise APIError()
-			await session.close()
-			return data["output"]
-		return answer
+				async with session.get(API_URL, params=payload) as r:
+					if r.status == 200:
+						data = await r.text()
+						data = json.loads(data, strict=False)
+						self.instances[author.id] = data["cs"] # Preserves conversation status
+					elif r.status == 401:
+						raise InvalidCredentials()
+					elif r.status == 503:
+						raise OutOfRequests()
+					else:
+						raise APIError()
+				await session.close()
+				return data["output"]
 
 	def get_credentials(self):
 		if "cleverbot_key" not in self.settings:
