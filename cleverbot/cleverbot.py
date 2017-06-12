@@ -94,12 +94,12 @@ class Cleverbot():
 		textlower2 = textlower.replace(removeq, "")
 		textcheck = textlower2.replace(removeapo,"")
 		textcheck = textcheck.replace(" ", "")
-		print(textcheck)
+		#print(textcheck)
 		questions = self.customresponse["questions"]
-		print(questions)
+		#print(questions)
 		cresponse = False
 		for question in questions:
-			print(question)
+			#print(question)
 			if textcheck == question:
 				answer = questions[question]["answer"]
 				cresponse = True
