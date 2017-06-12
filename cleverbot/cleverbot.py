@@ -100,7 +100,7 @@ class Cleverbot():
 		for question in questions:
 			print(question)
 			if textcheck == question:
-				answer = question["answer"]
+				answer = questions[question]["answer"]
 				cresponse = True
 		if cresponse == True:
 			return answer
