@@ -87,7 +87,7 @@ class Cleverbot():
 		await self.bot.say("Credentials set.")
 
 	async def get_response(self, author, text):
-		#for questions in self.customresponse.items():
+		#supports custom questions inside customquestions.json
 		removeq = "?"
 		removeapo = "'"
 		textlower = text.lower()
