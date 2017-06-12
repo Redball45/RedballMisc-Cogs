@@ -137,7 +137,7 @@ class Cleverbot():
 			return
 		removeq = "?"
 		removeapo = "'"
-		textlower = text.lower()
+		textlower = name.lower()
 		textlower2 = textlower.replace(removeq, "")
 		textcheck = textlower2.replace(removeapo,"")
 		textcheck = textcheck.replace(" ", "")
