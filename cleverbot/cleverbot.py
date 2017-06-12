@@ -126,17 +126,23 @@ class Cleverbot():
 			await session.close()
 			return data["output"]
 
-	@cleverbot.command(hidden=True, pass_context=True, name="add")
+	@cleverbot.command(pass_context=True, name="add")
 	@checks.mod_or_permissions(manage_webhooks=True)
 	async def response(self, ctx, *, input_data: str):
-		"""Adds a custom response for cleverbot. Format is !response message;answer (message should contain no spaces, all lowercase and no ' or ?, answer in JSON format)"""
+		"""Adds a custom response for cleverbot. Format is !response message;answer (answer in JSON format e.g { "answer" : "Toothless"})"""
 		try:
 			name, data = input_data.split(';',1)
 		except IndexError:
 			await self.bot.say("Plz format as !container add name;data (data in JSON format)")
 			return
+		removeq = "?"
+		removeapo = "'"
+		textlower = text.lower()
+		textlower2 = textlower.replace(removeq, "")
+		textcheck = textlower2.replace(removeapo,"")
+		textcheck = textcheck.replace(" ", "")
 		try:
-			self.customresponse["questions"][name] = json.loads(data)
+			self.customresponse["questions"][textcheck] = json.loads(data)
 		except ValueError:
 			await self.bot.say("Error in reading the JSON format")
 			return
@@ -204,6 +210,14 @@ def check_files():
 	data = {"TOGGLE" : True}
 	if not dataIO.is_valid_json(f):
 		dataIO.save_json(f, data)
+	files = {
+		"customresponse.json": {}
+	}
+
+	for filename, value in files.items():
+		if not os.path.isfile("data/cleverbot/{}".format(filename)):
+			print("Creating empty {}".format(filename))
+			dataIO.save_json("data/cleverbot/{}".format(filename), value)
 
 
 def setup(bot):
