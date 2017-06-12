@@ -7,6 +7,7 @@
 	"areyouarobot" :  { "answer" : "No I'm a dragon"},
 	"ischrisadumbamerican" :  { "answer" : "Yes"},
 	"whatsyourfavouritevideogame" : {"answer" : "Guild Wars 2"},
-	"howoldareyou" : {"answer" : "20 in dragon years"}
+	"howoldareyou" : {"answer" : "20 in dragon years"},
+	"whatsyourfavouritesong" : {"answer" : "https://www.youtube.com/watch?v=X2WH8mHJnhM"}
 	}
 }
