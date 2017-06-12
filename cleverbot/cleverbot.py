@@ -102,9 +102,9 @@ class Cleverbot():
 			if textcheck == question:
 				answer = question["answer"]
 				cresponse = True
-		if cresponse = True
+		if cresponse = True:
 			return answer
-		else		
+		else:		
 			payload = {}
 			payload["key"] = self.get_credentials()
 			payload["cs"] = self.instances.get(author.id, "")
