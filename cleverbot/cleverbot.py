@@ -97,6 +97,7 @@ class Cleverbot():
 		print(textcheck)
 		questions = self.customresponse["questions"]
 		print(questions)
+		cresponse = False
 		for question in questions:
 			print(question)
 			if textcheck == question:
