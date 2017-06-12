@@ -102,7 +102,7 @@ class Cleverbot():
 			if textcheck == question:
 				answer = question["answer"]
 				cresponse = True
-		if cresponse = True:
+		if cresponse == True:
 			return answer
 		else:		
 			payload = {}
