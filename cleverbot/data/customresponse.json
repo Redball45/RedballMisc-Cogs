@@ -5,6 +5,8 @@
 	"whomadeyou" : { "answer" : "Redball"},
 	"whocreatedyou" : { "answer" : "Redball"},
 	"areyouarobot" :  { "answer" : "No I'm a dragon"},
-	"ischrisadumbamerican" :  { "answer" : "Yes"}
+	"ischrisadumbamerican" :  { "answer" : "Yes"},
+	"whatsyourfavouritevideogame" : {"answer" : "Guild Wars 2"},
+	"howoldareyou" : {"answer" : "20 in dragon years"}
 	}
 }
