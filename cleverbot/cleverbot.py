@@ -34,7 +34,7 @@ class Cleverbot():
 		self.bot = bot
 		self.settings = dataIO.load_json("data/cleverbot/settings.json")
 		self.instances = {}
-		self.customresponse = dataIO.load_json("data/cleverbot/customresponse.json")
+		#self.customresponse = dataIO.load_json("data/cleverbot/customresponse.json")
 	@commands.group(no_pm=True, invoke_without_command=True, pass_context=True)
 	async def cleverbot(self, ctx, *, message):
 		"""Talk with cleverbot"""
