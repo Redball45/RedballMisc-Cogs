@@ -136,7 +136,7 @@ class Cleverbot():
 			await self.bot.say("Plz format as !container add name;data (data in JSON format)")
 			return
 		try:
-			self.customresponse[name] = json.loads(data)
+			self.customresponse["questions"][name] = json.loads(data)
 		except ValueError:
 			await self.bot.say("Error in reading the JSON format")
 			return
@@ -190,7 +190,7 @@ class Cleverbot():
 				await self.bot.send_message(channel, response)
 	
 	def save_responses(self):
-		dataIO.save_json('data/guildwars2/customresponse.json', self.customresponse)
+		dataIO.save_json('data/cleverbot/customresponse.json', self.customresponse)
 
 
 def check_folders():
