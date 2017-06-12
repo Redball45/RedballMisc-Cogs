@@ -129,18 +129,18 @@ class Cleverbot():
 	@cleverbot.command(hidden=True, pass_context=True, name="add")
 	@checks.mod_or_permissions(manage_webhooks=True)
 	async def response(self, ctx, *, input_data: str):
-		"""Adds a custom response for cleverbot. Format is !response message;answer (answer in JSON format)"""
+		"""Adds a custom response for cleverbot. Format is !response message;answer (message should contain no spaces, all lowercase and no ' or ?, answer in JSON format)"""
 		try:
 			name, data = input_data.split(';',1)
 		except IndexError:
 			await self.bot.say("Plz format as !container add name;data (data in JSON format)")
 			return
 		try:
-			self.containers[name] = json.loads(data)
+			self.customresponse[name] = json.loads(data)
 		except ValueError:
 			await self.bot.say("Error in reading the JSON format")
 			return
-		self.save_containers()
+		self.save_responses()
 		await self.bot.say("Data added")
 
 	def get_credentials(self):
@@ -189,8 +189,8 @@ class Cleverbot():
 			else:
 				await self.bot.send_message(channel, response)
 	
-	def save_containers(self):
-		dataIO.save_json('data/guildwars2/containers.json', self.containers)
+	def save_responses(self):
+		dataIO.save_json('data/guildwars2/customresponse.json', self.customresponse)
 
 
 def check_folders():
