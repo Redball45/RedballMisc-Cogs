@@ -51,6 +51,10 @@ class misc:
 			await self.bot.say(
 				cf.error("You must provide a Discord attachment."))
 			return
+		fileextension = os.path.splitext(filename)[1]
+		if fileextension != 'html'
+			await self.bot.say("That's not a report.")
+			return
 		filepath = os.path.join(self.report_base, filename)
 		if os.path.splitext(filename)[0] in self._list_reports():
 			await self.bot.say(
