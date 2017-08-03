@@ -94,13 +94,6 @@ def check_folders():
 	if not os.path.exists(folder):
 		print("Creating {} folder...".format(folder))
 		os.makedirs(folder)
-	files = glob.glob(folder + '/*')
-	for f in files:
-		try:
-			os.remove(f)
-		except PermissionError:
-			print("Could not delete file '{}'. "
-					"Check your file permissions.".format(f))
 
 def setup(bot):
 	n = misc(bot)
