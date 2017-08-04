@@ -130,14 +130,15 @@ class misc:
 		message = await self.bot.say("Processing...")
 		file = '/home/ubuntu/Red-DiscordBot/data/reports/' + filename
 		command = 'wine /home/ubuntu/rh/raid_heroes.exe ' + file
+		command = shlex.split(command)
 		await self.bot.say(command)
-		boss = await self.processevtc(command)
+		"""boss = await self.processevtc(command)
 		if boss == 'error':
 			await self.bot.say("Something went wrong.")
 			return
 		os.remove(file)
 		linktofile = 'redballslair.uk/raidbossreports/reports/' + os.path.splitext(filename)[0] + boss + '.html'
-		await self.bot.say(linktofile)
+		await self.bot.say(linktofile)"""
 		#await self.bot.send_file(channel, output)
 
 	@commands.command(pass_context=True)
