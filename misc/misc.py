@@ -55,7 +55,8 @@ class misc:
 				else:
 					pass
 			else:
-				if output: 
+				if output:
+					await self.bot.say(output)
 					if 'Samarog' in output:
 						boss = '_sam'
 					if 'Sabetha' in output:
