@@ -133,15 +133,15 @@ class misc:
 				f.write(await new_evtc.read())
 				f.close()
 		message = await self.bot.say("Processing...")
-		file = '/home/ubuntu/Red-DiscordBot/data/reports/' + filename
-		command = '/home/ubuntu/raid_heroes ' + file
+		file = '/home/ark/Red-DiscordBot/data/reports/' + filename
+		command = '/home/ark/raid_heroes ' + file
 		boss = await self.processevtc(command)
 		if boss == 'error':
 			await self.bot.say("Something went wrong.")
 			return
 		os.remove(file)
-		linktofile = 'redballslair.uk/raidbossreports/reports/' + os.path.splitext(filename)[0] + boss + '.html'
-		await self.bot.say(linktofile)
+		#linktofile = 'redballslair.uk/raidbossreports/reports/' + os.path.splitext(filename)[0] + boss + '.html'
+		#await self.bot.say(linktofile)
 		#await self.bot.send_file(channel, output)
 
 	@commands.command(pass_context=True)
