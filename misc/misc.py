@@ -40,7 +40,7 @@ class misc:
 
 	async def processevtc(self, command):
 		"""This function runs a raid_heroes.exe to process a evtc file using a seperate thread so it isn't blocking"""
-		process = Popen(command, stdout=PIPE, shell=True, bufsize=1, close_fds=ON_POSIX)
+		process = Popen([command], stdout=PIPE, shell=True, bufsize=1, close_fds=ON_POSIX)
 		q = Queue()
 		t = Thread(target=self.enqueue_output, args=(process.stdout, q))
 		t.daemon = True
@@ -133,7 +133,7 @@ class misc:
 				f.close()
 		message = await self.bot.say("Processing...")
 		file = '/home/ubuntu/Red-DiscordBot/data/reports/' + filename
-		command = '[' + 'wine /home/ubuntu/rh/raid_heroes.exe' + file + ']'
+		command = 'wine /home/ubuntu/rh/raid_heroes.exe' + file
 		boss = await self.processevtc(command)
 		if boss == 'error':
 			await self.bot.say("Something went wrong.")
