@@ -121,14 +121,12 @@ class misc:
 			return
 		filepath = os.path.join(self.evtc_base, filename)
 		if os.path.splitext(filename)[0] in self._list_evtc():
-			await self.bot.say(
-				cf.error("An evtc with that filename already exists."
-						 " This shouldn't happen, contact the owner."))
-			return
-		async with aiohttp.get(url) as new_evtc:
-			f = open(filepath, "wb")
-			f.write(await new_evtc.read())
-			f.close()
+			pass
+		elif:
+			async with aiohttp.get(url) as new_evtc:
+				f = open(filepath, "wb")
+				f.write(await new_evtc.read())
+				f.close()
 		message = await self.bot.say("Processing...")
 		file = '/home/ubuntu/Red-DiscordBot/data/reports/' + filename
 		command = 'wine /home/ubuntu/rh/raid_heroes.exe ' + file
