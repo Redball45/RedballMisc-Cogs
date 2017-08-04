@@ -33,15 +33,15 @@ class misc:
 		self.report_base = "data/reports"
 		self.evtc_base = "data/reports"
 
-	def enqueue_output(self, out, queue):
+	"""def enqueue_output(self, out, queue):
 		for line in iter(out.readline, b''):
 			queue.put(line)
-		out.close()
+		out.close()"""
 
-	async def processevtc(self, command, file):
-		"""This function runs a raid_heroes.exe to process a evtc file using a seperate thread so it isn't blocking"""
+	"""async def processevtc(self, command, file):
+		This function runs a raid_heroes.exe to process a evtc file using a seperate thread so it isn't blocking
 		subprocess.call([command, file])
-		"""process = Popen(shlex.split(command), stdout=PIPE, bufsize=1, close_fds=ON_POSIX)
+		process = Popen(shlex.split(command), stdout=PIPE, bufsize=1, close_fds=ON_POSIX)
 		q = Queue()
 		t = Thread(target=self.enqueue_output, args=(process.stdout, q))
 		t.daemon = True
@@ -88,11 +88,11 @@ class misc:
 	async def summon(self):
 		await self.bot.say("Who dares summon me?")
 
-	@commands.command(pass_context=True)
+	"""@commands.command(pass_context=True)
 	@checks.is_owner()
 	async def logprocess(self, ctx, link: str=None):
-		"""Process an arcdps .evtc file with raid heroes.
-		Upload the file as a discord attachment."""
+		Process an arcdps .evtc file with raid heroes.
+		Upload the file as a discord attachment.
 		await self.bot.type()
 		server = ctx.message.server
 		channel = ctx.message.channel
@@ -140,7 +140,7 @@ class misc:
 		os.remove(file)
 		#linktofile = 'redballslair.uk/raidbossreports/reports/' + os.path.splitext(filename)[0] + boss + '.html'
 		#await self.bot.say(linktofile)
-		#await self.bot.send_file(channel, output)
+		#await self.bot.send_file(channel, output)"""
 
 	@commands.command(pass_context=True)
 	@checks.is_owner()
