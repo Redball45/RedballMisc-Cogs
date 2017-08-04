@@ -45,6 +45,7 @@ class misc:
 		t = Thread(target=self.enqueue_output, args=(process.stdout, q))
 		t.daemon = True
 		t.start()
+		boss = 'error'
 		while True:
 			try:
 				output = q.get_nowait().decode()
@@ -75,10 +76,7 @@ class misc:
 						boss = '_xer'
 					if 'Cairn' in output:
 						boss = '_cai'
-		if boss:
-			return boss
-		else:
-			return 'error'
+		return boss
 
 	@commands.command(hidden=True)
 	async def summon(self):
