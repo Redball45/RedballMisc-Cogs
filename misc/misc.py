@@ -131,7 +131,7 @@ class misc:
 			f.close()
 		message = await self.bot.say("Processing...")
 		file = '/home/ubuntu/Red-DiscordBot/data/reports/' + filename
-		command = '/home/ubuntu/raid_heroes ' + file
+		command = 'wine /home/ubuntu/rh/raid_heroes.exe ' + file
 		await self.bot.say(command)
 		boss = await self.processevtc(command)
 		if boss == 'error':
