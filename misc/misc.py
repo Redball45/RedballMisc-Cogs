@@ -122,7 +122,7 @@ class misc:
 		filepath = os.path.join(self.evtc_base, filename)
 		if os.path.splitext(filename)[0] in self._list_evtc():
 			pass
-		elif:
+		else:
 			async with aiohttp.get(url) as new_evtc:
 				f = open(filepath, "wb")
 				f.write(await new_evtc.read())
