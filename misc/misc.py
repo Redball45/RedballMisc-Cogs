@@ -134,7 +134,7 @@ class misc:
 		file = '/home/ubuntu/Red-DiscordBot/data/reports/' + filename
 		command = '/home/ubuntu/raid_heroes ' + file
 		boss = await self.processevtc(command)
-		if boss == 'error'
+		if boss == 'error':
 			await self.bot.say("Something went wrong.")
 			return
 		os.remove(file)
