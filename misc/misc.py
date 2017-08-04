@@ -13,7 +13,7 @@ import aiohttp
 import copy
 import glob
 from typing import List
-from subprocess import PIPE, Popen
+import subprocess
 from threading import Thread
 import shlex
 
@@ -38,10 +38,10 @@ class misc:
 			queue.put(line)
 		out.close()
 
-	async def processevtc(self, command):
+	async def processevtc(self, command, file):
 		"""This function runs a raid_heroes.exe to process a evtc file using a seperate thread so it isn't blocking"""
-		await self.bot.say(command)
-		process = Popen(shlex.split(command), stdout=PIPE, bufsize=1, close_fds=ON_POSIX)
+		subprocess.call([command, file])
+		"""process = Popen(shlex.split(command), stdout=PIPE, bufsize=1, close_fds=ON_POSIX)
 		q = Queue()
 		t = Thread(target=self.enqueue_output, args=(process.stdout, q))
 		t.daemon = True
@@ -82,7 +82,7 @@ class misc:
 						boss = '_xer'
 					if 'Cairn' in output:
 						boss = '_cai'
-		return boss
+		return boss"""
 
 	@commands.command(hidden=True)
 	async def summon(self):
@@ -133,12 +133,10 @@ class misc:
 				f.write(await new_evtc.read())
 				f.close()
 		message = await self.bot.say("Processing...")
-		file = '/home/ark/Red-DiscordBot/data/reports/' + filename
-		command = '/home/ark/raid_heroes ' + file
-		boss = await self.processevtc(command)
-		if boss == 'error':
-			await self.bot.say("Something went wrong.")
-			return
+		file = '/home/ubuntu/Red-DiscordBot/data/reports/' + filename
+		command = '/home/ubuntu/raid_heroes'
+		await self.processevtc(command, file)
+		await asyncio.sleep(180)
 		os.remove(file)
 		#linktofile = 'redballslair.uk/raidbossreports/reports/' + os.path.splitext(filename)[0] + boss + '.html'
 		#await self.bot.say(linktofile)
