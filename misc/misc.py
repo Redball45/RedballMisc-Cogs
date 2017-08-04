@@ -130,7 +130,6 @@ class misc:
 		message = await self.bot.say("Processing...")
 		file = '/home/ubuntu/Red-DiscordBot/data/reports/' + filename
 		command = 'wine /home/ubuntu/rh/raid_heroes.exe ' + file
-		command = shlex.split(command)
 		await self.bot.say(command)
 		boss = await self.processevtc(command)
 		if boss == 'error':
