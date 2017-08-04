@@ -132,6 +132,7 @@ class misc:
 		message = await self.bot.say("Processing...")
 		file = '/home/ubuntu/Red-DiscordBot/data/reports/' + filename
 		command = '/home/ubuntu/raid_heroes ' + file
+		await self.bot.say(command)
 		boss = await self.processevtc(command)
 		if boss == 'error':
 			await self.bot.say("Something went wrong.")
