@@ -148,6 +148,7 @@ class misc:
 		"""Adds a new raid heroes log report.
 		Upload the file as a discord attachment."""
 		await self.bot.type()
+		message = ctx.message
 		server = ctx.message.server
 		attach = ctx.message.attachments
 		if len(attach) > 1 or (attach and link):
@@ -182,8 +183,12 @@ class misc:
 			f = open(filepath, "wb")
 			f.write(await new_report.read())
 			f.close()
-		await self.bot.say(
-			cf.info("Report {} added.".format(os.path.splitext(filename)[0])))
+		url = 'redballslair.uk/raidbossreports/reports/' + filename
+		try:
+			await self.bot.delete_message(message)
+		except:
+			pass
+		await self.bot.say("Report added. URL:".format(url))
 
 
 	"""async def rename_orun(self, ):
