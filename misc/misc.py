@@ -183,7 +183,7 @@ class misc:
 			f = open(filepath, "wb")
 			f.write(await new_report.read())
 			f.close()
-		url = 'redballslair.uk/raidbossreports/reports/' + filename
+		url = 'http://redballslair.uk/raidbossreports/reports/' + filename
 		try:
 			await self.bot.delete_message(message)
 		except:
