@@ -188,7 +188,7 @@ class misc:
 			await self.bot.delete_message(message)
 		except:
 			pass
-		await self.bot.say("Report added. URL:".format(url))
+		await self.bot.say("Report added. URL: {0}".format(url))
 
 
 	"""async def rename_orun(self, ):
