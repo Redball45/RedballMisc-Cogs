@@ -299,7 +299,7 @@ class misc:
 								   "`{1}`".format(user, e))
 				return
 			if population == 'Full':
-				userid == '73569608572870656'
+				userid = '73569608572870656'
 				user = await self.bot.get_user_info(userid)
 				await self.bot.send_message(user, "Gandara is currently not full!")
 				await asyncio.sleep(300)
