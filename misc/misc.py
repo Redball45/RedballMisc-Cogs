@@ -24,6 +24,31 @@ except ImportError:
 
 ON_POSIX = 'posix' in sys.builtin_module_names
 
+DEFAULT_HEADERS = {'User-Agent': "A GW2 Discord bot",
+'Accept': 'application/json'}
+
+
+class APIError(Exception):
+	pass
+
+class APIConnectionError(APIError):
+	pass
+
+class APIForbidden(APIError):
+	pass
+
+class APIBadRequest(APIError):
+	pass
+
+class ShinyAPIError(Exception):
+	pass
+
+class APIKeyError(APIError):
+	pass
+
+class APINotFound(APIError):
+	pass
+
 
 class misc:
 	"""Misc commands"""
@@ -32,6 +57,7 @@ class misc:
 		self.bot = bot
 		self.report_base = "data/reports"
 		self.evtc_base = "data/reports"
+		self.gandaracheck = True
 
 	"""def enqueue_output(self, out, queue):
 		for line in iter(out.readline, b''):
@@ -218,6 +244,67 @@ class misc:
 				self.evtc_base))],
 				key=lambda s: s.lower())
 
+	async def getworldid(self, world):
+		if world is None:
+			return None
+		try:
+			endpoint = "worlds?ids=all"
+			results = await self.call_api(endpoint)
+		except APIError:
+			return None
+		for w in results:
+			if w["name"].lower() == world.lower():
+				return w["id"]
+		return None
+
+	async def call_api(self, endpoint, headers=DEFAULT_HEADERS):
+		apiserv = 'https://api.guildwars2.com/v2/'
+		url = apiserv + endpoint
+		"""try:
+			result = await self.session.get(url, headers=headers)
+		except:
+			raise APIConnectionError("API appears to be down.")"""
+		async with self.session.get(url, headers=headers) as r:
+			if r.status != 200 and r.status != 206:
+				if r.status == 400:
+					raise APIBadRequest("No ongoing transactions")
+				if r.status == 404:
+					raise APINotFound("Not found")
+				if r.status == 403:
+					raise APIForbidden("Access denied")
+				if r.status == 429:
+					print (time.strftime('%a %H:%M:%S'), "Api call limit reached")
+					raise APIConnectionError(
+						"Requests limit has been achieved. Try again later.")
+				else:
+					raise APIConnectionError(str(r.status))
+			results = await r.json()
+		return results
+
+	async def gandarafullcheck(self):
+		if self.gandaracheck == True:
+			world = 'Gandara'
+			wid = await self.getworldid(world)
+			try:
+				endpoint_ = "worlds?id={0}".format(wid)
+				worldinfo = await self.call_api(endpoint_)
+				worldname = worldinfo["name"]
+				population = worldinfo["population"]
+			except APIError as e:
+				print("{0.mention}, API has responded with the following error: "
+								   "`{1}`".format(user, e))
+				return
+			if population == 'Full':
+				userid == '73569608572870656'
+				user = await self.bot.get_user_info(userid)
+				await self.bot.send_message(user, "Gandara is currently not full!")
+				await asyncio.sleep(300)
+				self.gandaracheck = False
+			else:
+				await asyncio.sleep(300)
+		else:
+			await asyncio.sleep(1800)
+
 def check_folders():
 	folder = "data/reports/toprocess"
 	if not os.path.exists(folder):
@@ -228,5 +315,5 @@ def setup(bot):
 	n = misc(bot)
 	check_folders()
 	loop = asyncio.get_event_loop()
-	#loop.create_task(n.rename_orun())
+	loop.create_task(n.gandarafullcheck())
 	bot.add_cog(n)
