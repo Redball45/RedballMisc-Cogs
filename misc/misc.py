@@ -298,7 +298,7 @@ class misc:
 				print("{0.mention}, API has responded with the following error: "
 								   "`{1}`".format(user, e))
 				return
-			if population == 'Full':
+			if population != 'Full':
 				userid = '73569608572870656'
 				user = await self.bot.get_user_info(userid)
 				await self.bot.send_message(user, "Gandara is currently not full!")
