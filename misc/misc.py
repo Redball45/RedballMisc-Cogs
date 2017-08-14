@@ -58,6 +58,10 @@ class misc:
 		self.report_base = "data/reports"
 		self.evtc_base = "data/reports"
 		self.gandaracheck = True
+		self.session = aiohttp.ClientSession(loop=self.bot.loop)
+
+	def __unload(self):
+		self.session.close()
 
 	"""def enqueue_output(self, out, queue):
 		for line in iter(out.readline, b''):
