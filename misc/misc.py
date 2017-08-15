@@ -295,8 +295,6 @@ class misc:
 				worldname = worldinfo["name"]
 				population = worldinfo["population"]
 			except APIError as e:
-				print("{0.mention}, API has responded with the following error: "
-								   "`{1}`".format(user, e))
 				return
 			if population != 'Full':
 				userid = '73569608572870656'
