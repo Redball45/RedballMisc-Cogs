@@ -287,33 +287,35 @@ class misc:
 		return results
 
 	async def gandarafullcheck(self):
-		if self.gandaracheck == True:
-			world = 'Gandara'
-			wid = await self.getworldid(world)
-			try:
-				endpoint_ = "worlds?id={0}".format(wid)
-				worldinfo = await self.call_api(endpoint_)
-				worldname = worldinfo["name"]
-				population = worldinfo["population"]
-			except APIError as e:
-				return
-			if population != 'Full':
-				userid = '73569608572870656'
-				user = await self.bot.get_user_info(userid)
-				await self.bot.send_message(user, "Gandara is currently not full!")
-				await asyncio.sleep(300)
-				self.gandaracheck = False
+		while self is self.bot.get_cog("misc"):
+			if self.gandaracheck == True:
+				world = 'Gandara'
+				wid = await self.getworldid(world)
+				try:
+					endpoint_ = "worlds?id={0}".format(wid)
+					worldinfo = await self.call_api(endpoint_)
+					worldname = worldinfo["name"]
+					population = worldinfo["population"]
+				except APIError as e:
+					return
+				if population != 'Full':
+					userid = '73569608572870656'
+					user = await self.bot.get_user_info(userid)
+					await self.bot.send_message(user, "Gandara is currently not full!")
+					await asyncio.sleep(300)
+					self.gandaracheck = False
+				else:
+					await asyncio.sleep(300)
 			else:
-				await asyncio.sleep(300)
-		else:
-			await asyncio.sleep(1800)
+				await asyncio.sleep(1800)
 
 	async def timetopof(self):
-		poflaunch = datetime.datetime(2017, 9, 22, 16) - datetime.datetime.utcnow()
-		hours = int(poflaunch.total_seconds() / 3600)
-		game = str(hours) + ' hours until PoF!'
-		await self.bot.change_presence(game=discord.Game(name=game),status=discord.Status.online)
-		await asyncio.sleep(300)
+		while self is self.bot.get_cog("misc"):
+			poflaunch = datetime.datetime(2017, 9, 22, 16) - datetime.datetime.utcnow()
+			hours = int(poflaunch.total_seconds() / 3600)
+			game = str(hours) + ' hours until PoF!'
+			await self.bot.change_presence(game=discord.Game(name=game),status=discord.Status.online)
+			await asyncio.sleep(300)
 		
 def check_folders():
 	folder = "data/reports/toprocess"
