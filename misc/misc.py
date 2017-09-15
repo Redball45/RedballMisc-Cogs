@@ -16,6 +16,7 @@ from typing import List
 import subprocess
 from threading import Thread
 import shlex
+import datetime
 
 try:
 	from Queue import Queue, Empty
@@ -307,6 +308,15 @@ class misc:
 		else:
 			await asyncio.sleep(1800)
 
+	async def timetopof(self):
+		poflaunch = datetime.datetime.strptime('22Sep201717', '%d%b%Y%H')
+		now = datetime.datetime.now()
+		difference = poflaunch - now
+		hours = round(difference.total_seconds() / 3600)
+		game = str(hours) + ' hours until PoF!'
+		await self.bot.change_presence(game=discord.Game(name=game),status=discord.Status.online)
+		await asyncio.sleep(300)
+		
 def check_folders():
 	folder = "data/reports/toprocess"
 	if not os.path.exists(folder):
@@ -318,4 +328,5 @@ def setup(bot):
 	check_folders()
 	loop = asyncio.get_event_loop()
 	loop.create_task(n.gandarafullcheck())
+	loop.create_task(n.timetopof())
 	bot.add_cog(n)
