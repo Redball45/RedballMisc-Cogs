@@ -309,10 +309,8 @@ class misc:
 			await asyncio.sleep(1800)
 
 	async def timetopof(self):
-		poflaunch = datetime.datetime.strptime('22Sep201717', '%d%b%Y%H')
-		now = datetime.datetime.now()
-		difference = poflaunch - now
-		hours = round(difference.total_seconds() / 3600)
+		poflaunch = datetime.datetime(2017, 9, 22, 16) - datetime.datetime.utcnow()
+		hours = int(poflaunch.total_seconds() / 3600)
 		game = str(hours) + ' hours until PoF!'
 		await self.bot.change_presence(game=discord.Game(name=game),status=discord.Status.online)
 		await asyncio.sleep(300)
