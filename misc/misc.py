@@ -312,10 +312,12 @@ class misc:
 	async def timetopof(self):
 		while self is self.bot.get_cog("misc"):
 			poflaunch = datetime.datetime(2017, 9, 22, 16) - datetime.datetime.utcnow()
-			hours = int(poflaunch.total_seconds() / 3600)
-			game = str(hours) + ' hours until PoF!'
+			hours = poflaunch.total_seconds() / 3600
+			minutes = (hours % 1) * 60
+			time = "{:02d}:{:02d}".format(int(hours), int(minutes))
+			game = time  + ' until PoF!'
 			await self.bot.change_presence(game=discord.Game(name=game),status=discord.Status.online)
-			await asyncio.sleep(300)
+			await asyncio.sleep(30)
 		
 def check_folders():
 	folder = "data/reports/toprocess"
